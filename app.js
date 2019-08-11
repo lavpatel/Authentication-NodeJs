@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost:27017/authentication',{ useNewUrlParser: true }).then(() => {console.log('Database Connected')});
 
 app.get('/', function(req,res){
-    res.render('home');   
+    res.render('home')   
 })
 
 app.get('/signup', function(req,res){

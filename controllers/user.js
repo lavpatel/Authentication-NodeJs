@@ -20,7 +20,13 @@ exports.signin = function(req,res){
         if(err){
             res.send('Password is incorrect')
         }else{
+            res.cookie('t','mynameiskhan')
             res.redirect('/')
         }
     })
+}
+
+exports.signout = (req,res) =>{
+    res.clearCookie('t')
+    res.redirect('/login')
 }
