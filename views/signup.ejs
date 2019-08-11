@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign up</title>
+</head>
+<body>
+
+    <div class="jumbotron">
+        Sign up Page
+    </div>
+
+    <div class="container" id="container">
+        <div>
+          <form class="signup" action="/signup" method="post">
+            
+            <div>
+                <label for="firstname">First Name</label>
+                <input type="text" placeholder="firstname" name="user[firstname]" id="firstname" required>
+            </div>
+            <div>
+                <label for="lastname">Last Name</label>
+                <input type="text" placeholder="lastname" name="user[lastname]" id="lastname" required>
+            </div>
+            <div>
+                <label for="username">User Name</label>
+                <input type="text" placeholder="email" name="user[username]" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" placeholder="password" name="user[password]" id="password" required>
+            </div>
+
+            <input type="submit" name="submit" value="Submit">
+          </form>
+        </div>
+      </div>
+
+      <a href="login.html"> <button> Sign in </button> </a>
+
+</body>
+</html>
