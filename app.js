@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var auth = require('./controllers/user');
 
 app.set('view engine', 'ejs');
+app.use('/views', express.static('views'))
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/authentication',{ useNewUrlParser: true }).then(() => {console.log('Database Connected')});
