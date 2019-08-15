@@ -16,7 +16,7 @@ exports.signup = function(req, res){
 exports.signin = function(req,res){
     console.log(req.body);
     
-    Model.findOne({username:req.body.username,password:req.body.password},(err,user)=>{
+    Model.findOne({username:req.body.username,password:req.body.password},function(err,user){
         if(err){
             res.send('Password is incorrect')
         }else{
