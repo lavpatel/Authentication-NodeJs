@@ -2,26 +2,39 @@ var Model= require('../model/user');
 
 
 exports.signup = function(req, res){
-    Model.create(req.body.user,function(err,newuser){
-      if(!err){
-        console.log(req.body.user);
-        console.log('Successful');
-        res.redirect('/login');
-      }else{
-        console.log(err);
-      }
-    });
-  }
+  Model.findOne({username:req.body.user.username},function(err,user){    
+    console.log(user);
+    if(user === null){
+      Model.create(req.body.user,function(err,newuser){
+        if(!err){
+          console.log('Successful');
+          res.redirect('/login');
+        }else{
+          console.log(err);
+        }
+      })
+    }else{
+      console.log("Already have an account. Please go to login page");
+      var popup = {show:true}
+      res.render('signup',{popup:popup})
+    }
+  });
+}
 
 exports.signin = function(req,res){
     console.log(req.body);
     
-    Model.findOne({username:req.body.username,password:req.body.password},function(err,user){
-        if(err){
-            res.send('Password is incorrect')
+    Model.findOne({username:req.body.username},function(err,user){
+        if(user == null){
+            res.send('No Such User');
         }else{
-            res.cookie('t','mynameiskhan')
-            res.redirect('/')
+          //console.log(user);
+          if(user.password == req.body.password){
+            res.cookie('t','mynameiskhan');
+            res.redirect('/');
+          }else{
+            res.send('Incorrect Password');
+          }
         }
     })
 }

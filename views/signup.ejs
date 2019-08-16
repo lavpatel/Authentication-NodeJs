@@ -73,7 +73,10 @@
                                 </div>
                                 <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password" required>
                             </div>
-                           
+                            <% if(popup.show){ %>
+                            <p class="popup">Already have an account with this username!</p>
+                           <%}%>
+
                            <script>
                            function showPass() {
                                var x = document.getElementById("confirmPass");
