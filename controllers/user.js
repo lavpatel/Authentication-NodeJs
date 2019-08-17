@@ -23,14 +23,14 @@ exports.signup = function(req, res){
 
 exports.signin = function(req,res){
     console.log(req.body);
-    
+
     Model.findOne({username:req.body.username},function(err,user){
         if(user == null){
             res.send('No Such User');
         }else{
           //console.log(user);
           if(user.password == req.body.password){
-            res.cookie('t','mynameiskhan');
+            res.cookie('id',user._id);
             res.redirect('/');
           }else{
             res.send('Incorrect Password');
@@ -39,7 +39,7 @@ exports.signin = function(req,res){
     })
 }
 
-exports.signout = (req,res) =>{
-    res.clearCookie('t')
-    res.redirect('/login')
+exports.signout = function(req,res){
+  res.clearCookie("id");
+  res.redirect('/login');
 }
