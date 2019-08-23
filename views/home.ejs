@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Welcome</title>
-    <meta charset="utf-8">
-    <meta
-    content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <!-- Bootstrap CSS -->
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+<% include partials/header %>
 
-    <link href="./views/main.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-
-    <div class="container" id="container">
-        <h1>Home Page</h1>
+<div class="container" id="container">
+  <% blogs.forEach(blog => { %>
+    <br>
+    <div class="card">
+      <div class="card-body">
+        <img class="card-title" src=<%= blog.image %>> 
+        <h1 class="card-header"> <%= blog.title %> </h1>
+        <p class="card-text"> <%= blog.body.slice(0,100) %>... </p>
+        <a href="/blog/<%= blog._id %>" class="card-link">Read More</a>
+      </div>
     </div>
 
-    <div>
-        <form action="/signout" class="signout" method="post">
-            <div class="form-group">
-                <br><input class="btn btn-primary btn-block login_btn" name="submit" type="submit" value="Signout">
-            </div>  
-        </form>
-    </div>
-</body>
-</html>
+ 
+
+    <!-- <h1 id="blog-h1"> <%= blog.title %></h1> -->
+    <br>
+  <%}) %>
+</div>
+    
+<% include partials/footer %>

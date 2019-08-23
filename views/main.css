@@ -2,8 +2,8 @@
 
 html,body{
     background-image: url('https://cdn.wallpapersafari.com/70/32/Xiy6A0.jpg');
+    background-repeat: repeat-y;
     background-size: auto;
-    background-repeat: no-repeat;
     height: 100%;
     font-family: 'Open Sans', sans-serif;
 }
@@ -13,22 +13,29 @@ html,body{
     align-content: center;
 }
 
-h1{
+#blog-h1{
     color:white;
 }
 
 .first{
-    height: 370px;
+    height: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.5) !important;
 }
 .second{
-    height: 550px;
+    height: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+.third{
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 750px;
     background-color: rgba(0,0,0,0.5) !important;
 }
 
@@ -53,6 +60,12 @@ input:focus{
     outline: 0 0 0 0  !important;
     box-shadow: 0 0 0 0 !important;
 }
+
+textarea:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
 
 
 .fa {
@@ -82,6 +95,12 @@ input:focus{
     color: black;
     background-color: rgb(207, 154, 7);
 }
-.popup{
-    background-color:yellow;
+.popup, .popup1, .popup2{
+    color: White;
+}
+
+
+img {
+    max-width: 50%;
+    max-height: 50%;
 }

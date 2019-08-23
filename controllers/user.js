@@ -25,15 +25,19 @@ exports.signin = function(req,res){
     console.log(req.body);
 
     Model.findOne({username:req.body.username},function(err,user){
-        if(user == null){
-            res.send('No Such User');
+        if(user == null){          
+          console.log('No Such User');
+          var popup1 = {incorrectuser:true}
+          res.render('login',{popup1:popup1});
         }else{
           //console.log(user);
           if(user.password == req.body.password){
             res.cookie('id',user._id);
             res.redirect('/');
           }else{
-            res.send('Incorrect Password');
+            console.log('Incorrect Password');
+            var popup1 = {incorrectpassword:true}
+            res.render('login',{popup1:popup1});
           }
         }
     })

@@ -52,6 +52,12 @@
                                 <input class="btn float-right login_btn" type="submit" value="Login">
                             </div>
 
+                            <% if(popup1.incorrectuser){ %>
+                                <p class="popup1">Incorrect User!</p>
+                            <%}%>
+                            <% if(popup1.incorrectpassword){ %>
+                                <p class="popup2">Incorrect Password!</p>
+                            <%}%>
                         </form>
                     </div>
                     <div class="card-footer">
