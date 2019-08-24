@@ -30,9 +30,9 @@ exports.signin = function(req,res){
           var popup1 = {incorrectuser:true}
           res.render('login',{popup1:popup1});
         }else{
-          //console.log(user);
           if(user.password == req.body.password){
             res.cookie('id',user._id);
+            res.cookie('firstname',user.firstname);
             res.redirect('/');
           }else{
             console.log('Incorrect Password');
@@ -45,5 +45,6 @@ exports.signin = function(req,res){
 
 exports.signout = function(req,res){
   res.clearCookie("id");
+  res.clearCookie("firstname");
   res.redirect('/login');
 }

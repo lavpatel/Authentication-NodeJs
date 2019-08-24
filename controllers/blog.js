@@ -9,14 +9,15 @@ exports.requireSignin = (req,res,next) => {
 }
 exports.renderHome = (req,res) => {
     Model.find({},function(err,blogs){
+      blogs.firstname = req.cookies.firstname;
       res.render('home',{blogs:blogs})
     })
 }
 
-exports.create = function(req, res){
+exports.createBlog = function(req, res){
   let blog = req.body.blog;
   blog.userId = req.cookies.id;
-  Model.create(blog,function(err,newblog){
+  Model.create(blog,function(err,blogs){
     if(!err){
       res.redirect('/');
     }else{
@@ -27,21 +28,31 @@ exports.create = function(req, res){
 
 exports.showSingleBlog = function(req,res){
   Model.find({_id:req.params.id},function(err,blogs){
-  
     if(err){
       res.redirect('/')
     }else{
+      blogs.firstname = req.cookies.firstname;
       if(req.cookies.id == blogs[0].userId){
         blogs[0].isauthor = true;
       }else{
         blogs[0].isauthor = false;
       }
-      console.log(blogs);
-      
       res.render('show',{blogs:blogs})
     }
   })
 }
+
+exports.showYourBlog = function(req,res){
+  Model.find({userId:req.cookies.id},function(err,blogs){
+    if(err){
+      res.redirect('/')
+    }else{
+      blogs.firstname = req.cookies.firstname;
+      res.render('showOwn',{blogs:blogs})
+    }
+  })
+}
+
 
 exports.deletePost = function(req,res){
   Model.deleteOne( {_id:req.params.id}, function(err){
@@ -57,14 +68,12 @@ exports.deletePost = function(req,res){
 
 
 exports.updateBlogget = function(req,res){
-  Model.findOne({_id:req.params.id},(err,blog)=>{
+  Model.findOne({_id:req.params.id},(err,blogs)=>{
     if(!err){
-      console.log(blog);
-      
-      res.render('update',{blog:blog})
+      blogs.firstname = req.cookies.firstname;
+      res.render('update',{blogs:blogs})
     }else{
       console.log(err);
-      
     }
   })
 }
@@ -76,7 +85,6 @@ exports.updateBlog = function(req,res) {
       res.redirect(`/blog/${blog._id}`)
     }else{
       console.log(err);
-      
     }
   })
 }

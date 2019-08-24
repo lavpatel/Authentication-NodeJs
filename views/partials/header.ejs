@@ -11,23 +11,26 @@
     <!--Fontawesome CDN-->
     <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" rel="stylesheet">
 
-
-
 </head>
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand active" href="#">Blog</a>
-          </div>
-  
-          <ul class="navbar-nav"> 
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/create">Create Post</a></li> 
-          </ul>
-
-          <form action="/signout" class="signout" method="post">
-            <ul class="navbar-nav navbar-right"> <li><input class="btn btn-primary btn-block" name="submit" type="submit" value="Signout"></li> </ul>
-          </form>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand active" href="/">Blog</a>
         </div>
-      </nav>
+  
+        <ul class="navbar-nav"> 
+          <li class="nav-item"><a class="nav-link" href="/showOwn">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/createBlog">Create Blog</a></li> 
+        </ul>
+
+        <ul class="navbar-nav"> <li class="nav-item">  
+          <span class="input-group-text"> <i class="fas fa-user"> <%= blogs.firstname %> </i> </span> 
+        </li>
+        </ul>
+
+        <form action="/signout" class="signout" method="post">
+          <ul class="navbar-nav navbar-right"> <li><input class="btn btn-primary btn-block" name="submit" type="submit" value="Signout"></li> </ul>
+        </form>
+      </div>
+    </nav>

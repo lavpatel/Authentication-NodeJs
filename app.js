@@ -7,7 +7,8 @@ var dotenv = require('dotenv');
 
 app.use(cookieParser());
 var auth = require('./controllers/user');
-var {requireSignin ,renderHome, create, showSingleBlog, deletePost, updateBlog,updateBlogget} = require('./controllers/blog')
+var {requireSignin ,renderHome, createBlog, showSingleBlog, showYourBlog, deletePost, updateBlog,updateBlogget} = require('./controllers/blog')
+
 
 app.set('view engine', 'ejs');
 app.use('/views', express.static('views'))
@@ -15,6 +16,7 @@ dotenv.config();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }).then(() => {console.log('Database Connected')});
 
 app.get('/',requireSignin,renderHome);
@@ -29,21 +31,23 @@ app.get('/login', function(req,res){
     res.render('login',{popup1:popup1});   
 })
 
-app.get('/create', function(req,res){
-    res.render('create');
+app.get('/createBlog', function(req,res){
+    let blogs = {firstname:req.cookies.firstname};
+    res.render('createBlog',{blogs:blogs});
 })
 
 app.get("/blog/:id",showSingleBlog);
+app.get("/showOwn",showYourBlog);
 
 app.get('/blog/:id/update',updateBlogget);
-app.post('/blog/:id/update',updateBlog);
 
 
 app.post('/signup', auth.signup);
 app.post('/login', auth.signin);
 app.post('/signout',auth.signout);
-app.post('/create',create);
-app.post('/blog/:id/delete',deletePost)
+app.post('/createBLog',createBlog);
+app.post('/blog/:id/delete',deletePost);
+app.post('/blog/:id/update',updateBlog);
 
 
 app.listen('3000', function(){
