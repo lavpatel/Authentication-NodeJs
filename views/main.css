@@ -95,7 +95,7 @@ textarea:focus{
     background-color: rgb(207, 154, 7);
 }
 .popup, .popup1, .popup2{
-    color: White;
+    color: red;
 }
 
 .btn-space {

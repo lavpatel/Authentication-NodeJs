@@ -15,15 +15,19 @@ exports.renderHome = (req,res) => {
 }
 
 exports.createBlog = function(req, res){
-  let blog = req.body.blog;
-  blog.userId = req.cookies.id;
-  Model.create(blog,function(err,blogs){
-    if(!err){
-      res.redirect('/');
-    }else{
-      console.log(err);
-    }
-  })
+  if(!req.cookies.id){  
+    res.redirect('/login');
+  }else {
+    let blog = req.body.blog;
+    blog.userId = req.cookies.id;
+    Model.create(blog,function(err,blogs){
+      if(!err){
+        res.redirect('/');
+      }else{
+        console.log(err);
+      }
+    })
+  }
 }
 
 exports.showSingleBlog = function(req,res){
@@ -43,14 +47,18 @@ exports.showSingleBlog = function(req,res){
 }
 
 exports.showYourBlog = function(req,res){
-  Model.find({userId:req.cookies.id},function(err,blogs){
-    if(err){
-      res.redirect('/')
-    }else{
-      blogs.firstname = req.cookies.firstname;
-      res.render('showOwn',{blogs:blogs})
-    }
-  })
+  if(!req.cookies.id){  
+    res.redirect('/login');
+  }else {
+    Model.find({userId:req.cookies.id},function(err,blogs){
+      if(err){
+        res.redirect('/')
+      }else{
+        blogs.firstname = req.cookies.firstname;
+        res.render('showOwn',{blogs:blogs})
+      }
+    })
+  }
 }
 
 

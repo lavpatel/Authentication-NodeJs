@@ -35,7 +35,7 @@
                                         <i class="fas fa-user"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" id="firstname" name="user[firstname]" placeholder="Firstname" required>
+                                <input type="text" class="form-control" id="firstname" name="user[firstname]" placeholder="Firstname">
                             </div>
 
                             <div class="input-group form-group">
@@ -71,17 +71,21 @@
                                         <i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
                                     </span>
                                 </div>
-                                <input type="password" class="form-control" id="confirmPass" placeholder="Confirm password" required>
+                                <input type="password" class="form-control" id="confirmPass" name="confirmPass" placeholder="Confirm password" required>
                             </div>
-                            <% if(popup.show){ %>
+                            <% if(popup.duplicateUser){ %>
                             <p class="popup">Already have an account with this username!</p>
-                           <%}%>
+                            <%}%>
+
+                            <% if(popup.confPass){ %>
+                            <p class="popup">Password do not match!</p>
+                            <%}%>
 
                            <script>
                            function showPass() {
-                               var x = document.getElementById("confirmPass");
+                               var x = document.getElementById("password");
                                if (x.type == "password") {
-                                   x.type = "text";
+                                    x.type = "text";
                                 } else {
                                     x.type = "password";
                                 }

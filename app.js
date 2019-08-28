@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 
+
 app.use(cookieParser());
 var auth = require('./controllers/user');
 var {requireSignin ,renderHome, createBlog, showSingleBlog, showYourBlog, deletePost, updateBlog,updateBlogget} = require('./controllers/blog')
@@ -22,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true }).then(() => {co
 app.get('/',requireSignin,renderHome);
 
 app.get('/signup', function(req,res){
-    var popup = {show:false}
+    var popup = {confPass:false,duplicateUser:false}
     res.render('signup',{popup:popup});   
 })
 
