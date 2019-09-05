@@ -41,7 +41,7 @@ exports.signin = function(req,res){
           var popup1 = {incorrectuser:true}
           res.render('login',{popup1:popup1});
         }else{
-          if(user.password == req.body.password){
+          if(user.authenticate(req.body.password)){
             res.cookie('id',user._id, { expires: new Date(Date.now() + 1800000), httpOnly: true });
             res.cookie('firstname',user.firstname, { expires: new Date(Date.now() + 1800000), httpOnly: true });
             res.redirect('/');
