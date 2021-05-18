@@ -7,6 +7,8 @@ exports.requireSignin = (req,res,next) => {
         next();
     }
 }
+
+// test123
 exports.renderHome = (req,res) => {
     Model.find({},function(err,blogs){
       blogs.firstname = req.cookies.firstname;
